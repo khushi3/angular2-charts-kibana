@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="col-md-2" style="width: auto;">
+		<input *ngIf="config.filtering" placeholder="Filter in all Columns"
+		[ngTableFiltering]="config.filtering" class="form-control col-md-12" style=" text-transform: uppercase;" 
+		(tableChanged)="onChangeTable(config)"/>
+	</div>
+	</div>
+
+<div class="col-md-9"> 
+	<h3 class="pull-left" style="font-size:12px; font-weight: bold;">Showing: {{ length }} out of {{ totallength }} entries</h3>
+</div>
+<div class="col-md-2">
+	<h3 class="pull-right"  style="font-size: 12px; font-weight: bold;" >
+		<label class="control">ItemsPerPage:</label>
+	</h3>
+</div>
+<div class="col-md-1">
+	<h3 class="pull-right"  style="font-size: 15px; margin-top: -4px;" >
+		<select [(ngModel)]="itemsPerPage" (ngModelChange)="setItemsPerPage(itemsPerPage)">
+			<option>10</option><option>20</option><option>30</option></select> 
+		</h3>
+	</div>
+
+	<ng-table [config]="config"
+	(tableChanged)="onChangeTable(config)"
+	(cellClicked)="onCellClick($event)"
+	[rows]="rows" [columns]="columns" ></ng-table>
+
+
+
+	<pagination *ngIf= "config.paging" class="pagination-sm"
+	[(ngModel)]="page"
+	[totalItems]="length"
+	[itemsPerPage]="itemsPerPage"
+	[maxSize]="maxSize"
+	[rotate]="false"
+	(pageChanged)="onChangeTable(config,$event)"
+	[directionLinks]="true"
+	[boundaryLinks]="true"
+	(numPages)="numPages= $event">
+</pagination>	
+
+<pre *ngIf="config.paging" class="card card-block card-header">Page: {{ page }}/{{numPages}}</pre>

@@ -1,0 +1,41 @@
+table {
+width: 100%;
+display:block;
+height: 451px;
+}
+
+thead {
+display: inline-block;
+width: 100%;
+border: 1px solid black;
+height: 20px;
+}
+
+tbody {
+height: 400px;
+display: inline-block;
+width: 100%;
+overflow: overlay;
+border: 1px solid black;
+}
+
+thead, tbody tr {
+display:table;
+width:100%;
+table-layout:fixed; 
+}
+
+tbody td {
+width:100%; word-wrap:break-word;
+border: 1px solid black;
+}  
+
+th {
+background-color: #4CAF50;
+color: white;
+text-align: center;
+}
+
+tr:nth-child(even){
+background-color: #f2f2f2
+}
